@@ -1,1 +1,1 @@
-HiroSasha.Game.io
+https://hirosasha.github.io/game/
