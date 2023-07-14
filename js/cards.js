@@ -9,9 +9,9 @@ const cards = [
 	"../img/8.png",
 	"../img/a.png"
 ];
-const back = [
-	"../img/Робот.png",
-	"../img/фон.png"
+export const back = [
+	"../img/Робот-01.png",
+	"../img/фон2.png"
 ]
 export class Card {
 	img;

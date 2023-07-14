@@ -1,19 +1,21 @@
 import { createMenu } from "./createMenu.js";
-import { createCards } from "./cards.js";
+import { createCards, back } from "./cards.js";
 
-const gameWin=()=>{
+const gameWin = () => {
 	const card = document.querySelectorAll(".card");
-	let flag=true;
+	let flag = true;
 	card.forEach(el => {
-		if(!el.classList.contains("rotate")){
-			flag= false;
+		if (!el.classList.contains("rotate")) {
+			flag = false;
 		}
 	})
 	return flag;
 }
 
 export const createField = (lvl) => {
-	let statusGame=true;
+	const body = document.querySelector("body");
+	body.style.backgroundImage = `url(${back[1]})`;
+	let statusGame = true;
 	const main = document.querySelector("main");
 	main.classList.add("null");
 	console.log(lvl);
@@ -51,7 +53,7 @@ export const createField = (lvl) => {
 		gameCards.appendChild(card);
 
 		card.addEventListener('click', () => {
-			if(statusGame==true && !card.classList.contains("rotate")){
+			if (statusGame == true && !card.classList.contains("rotate")) {
 				console.log(prev);
 				console.log(card);
 				card.classList.add("rotate")
@@ -62,23 +64,38 @@ export const createField = (lvl) => {
 				else {
 					if (prev.style.backgroundImage == card.style.backgroundImage) {
 						prev = null;
-						if (gameWin()){
-							createMenu();
+						if (gameWin()) {
+
+							let model = document.createElement('div');
+							model.classList.add("model");
+							let context = document.createElement('div');
+							context.classList.add("context");
+							context.textContent = "Вы победили!!!"
+							let button = document.createElement('div');
+							button.classList.add("btn");
+							button.textContent = "Вернутся в меню"
+							model.appendChild(context);
+							model.appendChild(button);
+							main.appendChild(model);
+							button.addEventListener('click', () => {
+								createMenu();
+
+							})
 						}
 					}
 					else {
-						statusGame=false;
-						const time = setTimeout(()=>{
+						statusGame = false;
+						const time = setTimeout(() => {
 							card.classList.remove("rotate")
 							card.style.backgroundImage = `url(${el.back})`;
 							prev.classList.remove("rotate");
 							prev.style.backgroundImage = `url(${el.back})`;
 							prev = null;
-							statusGame=true;
+							statusGame = true;
 						}, 1000);
 						time;
 					}
-			}
+				}
 			}
 		})
 	})

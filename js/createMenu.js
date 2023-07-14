@@ -1,5 +1,10 @@
 import { createField } from "./createField.js";
+import { back } from "./cards.js";
 export const createMenu = () => {
+	const body = document.querySelector("body");
+	body.style.backgroundImage = `url(${back[0]})`;
+	const model = document.querySelector(".model");
+	if (model) model.remove();
 	const main = document.querySelector("main");
 	main.classList.remove("null");
 	const game = document.querySelector(".game");
