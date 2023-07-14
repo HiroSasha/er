@@ -11,6 +11,8 @@
 body {
 	background-image: url(img/Робот-01.png);
 	background-size: cover;
+	background-repeat: no-repeat;
+	color: aliceblue;
 }
 
 header {
